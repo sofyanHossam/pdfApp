@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddPdfActivity">
+    <RelativeLayout
+        android:id="@+id/bar"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+
+        android:background="@drawable/shape">
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_margin="15dp"
+            android:src="@drawable/ic_back" />
+        <ImageView
+            android:id="@+id/attech"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/ic_baseline_attachment_24"
+            android:layout_margin="15dp"/>
+
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/logo"
+            android:textSize="50dp"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:textColor="#FFF"/>
+    </RelativeLayout>
+    <LinearLayout
+        android:id="@+id/ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/bar"
+        android:layout_margin="12dp"
+        android:orientation="vertical"
+
+        >
+        <EditText
+            android:id="@+id/title"
+            android:textColorHint="@color/colorPrimary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:layout_margin="8dp"
+            android:layout_marginTop="12dp"
+            android:hint="الاسم "/>
+        <EditText
+            android:id="@+id/descProduct"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:textColorHint="@color/colorPrimary"
+            android:layout_marginTop="12dp"
+            android:hint=" الوصف ( اختياري )"/>
+
+        <TextView
+            android:id="@+id/category"
+            android:layout_below="@+id/bar"
+            android:layout_width="match_parent"
+            android:drawableRight="@drawable/ic_baseline_keyboard_arrow_down_24"
+            android:drawableLeft="@drawable/ic_baseline_menu_book_24"
+            android:layout_height="25dp"
+            android:inputType="textPersonName"
+            android:textColor="@color/colorPrimary"
+            android:layout_margin="8dp"
+            android:layout_marginTop="12dp"
+            android:text="ا القسم "/>
+
+
+
+    </LinearLayout>
+    <Button
+        android:id="@+id/addProduct_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="اضافة"
+        android:background="@color/colorPrimary"
+        android:textColor="#fff"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:padding="5dp"
+        android:layout_below="@+id/ll"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"/>
+
+</RelativeLayout>

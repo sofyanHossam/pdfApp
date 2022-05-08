@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DashoardAdminActivity">
+    <RelativeLayout
+        android:id="@+id/bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:backgroundTint="@color/colorPrimary"
+        android:background="@drawable/shape">
+        <ImageView
+            android:id="@+id/profile"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_baseline_person_2" />
+
+        <ImageView
+            android:id="@+id/Ulogout"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/ic_baseline_power_settings_new_24" />
+
+        <ImageView
+            android:id="@+id/add"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_toStartOf="@+id/Ulogout"
+            android:src="@drawable/ic_baseline_note_add_24" />
+
+
+
+
+        <TextView
+            android:id="@+id/U_name_tv"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center_horizontal"
+            android:text="Name"
+            android:textColor="#fff"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+<LinearLayout
+    android:id="@+id/lin"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/bar"
+    android:orientation="horizontal"
+    android:weightSum="4">
+
+    <EditText
+        android:id="@+id/searchProduct"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/bar"
+        android:textColorHint="@color/colorPrimary"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_weight="3.5"
+        android:drawableLeft="@drawable/ic_baseline_search_24"
+        android:drawablePadding="10dp"
+        android:hint="بحث"
+        android:padding="10dp" />
+
+    <ImageView
+        android:id="@+id/filterProduct"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        android:layout_weight=".4"
+        android:layout_below="@+id/bar"
+        android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@+id/searchProduct"
+        android:src="@drawable/ic_baseline_menu_book_24"
+        android:layout_marginEnd="5dp"
+        />
+</LinearLayout>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/addCategory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="50dp"
+        android:layout_marginBottom="19dp"
+        android:background="@color/colorPrimary"
+        android:src="@drawable/ic_baseline_playlist_add_24"
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/categoryRV"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/lin"
+        android:layout_margin="5dp"
+        tools:listitem="@layout/row_category"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        />
+
+
+<!--    <Button-->
+<!--        android:id="@+id/addCategory"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text=" + اضافة سنة دراسية -قسم  "-->
+<!--        android:background="@drawable/shape"-->
+<!--        android:layout_alignParentBottom="true"-->
+<!--        android:backgroundTint="@color/colorPrimary"-->
+<!--        android:textColor="#FFF"-->
+<!--        android:layout_margin="10dp"-->
+<!--        android:textSize="20dp"-->
+<!--        android:textStyle="bold"-->
+<!--        />-->
+
+</RelativeLayout>

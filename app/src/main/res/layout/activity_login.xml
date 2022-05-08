@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="#000"
+    android:layout_height="match_parent"
+
+    tools:context=".LoginActivity">
+
+
+        <ImageView
+            android:id="@+id/iv"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/logo"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="تسجيل الدخول"
+            android:textSize="20dp"
+            android:layout_below="@+id/iv"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:textColor="#FFF"/>
+
+    <EditText
+        android:id="@+id/L_emailEt"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_centerHorizontal="true"
+        android:padding="8dp"
+        android:background="@drawable/shape00"
+        android:layout_centerVertical="true"
+        android:layout_marginHorizontal="40dp"
+        android:textColorHint="@color/colorPrimary"
+        android:drawableLeft="@drawable/ic_baseline_email_24"
+        android:inputType="textEmailAddress"
+        android:layout_marginVertical="8dp"
+        android:hint="  ادخل البريد الالكتروني "/>
+
+    <!--  password   -->
+
+
+    <EditText
+        android:id="@+id/L_passwordEt"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:padding="8dp"
+        android:background="@drawable/shape00"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:gravity="right"
+        android:layout_marginHorizontal="40dp"
+        android:drawableLeft="@drawable/ic_baseline_vpn_key_24"
+        android:inputType="textPassword"
+        android:layout_below="@+id/L_emailEt"
+        android:layout_marginVertical="8dp"
+        android:hint="  ادخل كلمة المرور "
+
+        android:textColorHint="@color/colorPrimary"
+
+        />
+
+
+
+    <Button
+        android:id="@+id/Login_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="تسجيل"
+        android:backgroundTint="@color/colorPrimary"
+        android:textColor="#FFF"
+        android:background="@drawable/shape00"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="18dp"
+        android:layout_centerInParent="true"
+        android:layout_below="@+id/L_passwordEt"
+        />
+
+    <TextView
+        android:id="@+id/NO_account_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ليس لديك حساب ؟ "
+        android:textAlignment="center"
+        android:textColor="#FFF"
+        android:gravity="center_horizontal"
+        android:layout_below="@+id/Login_btn"
+        android:layout_marginTop="30dp"
+        />
+    <TextView
+        android:id="@+id/recover_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="هل نسيت كلمة المرور"
+        android:textAlignment="center"
+        android:gravity="center_horizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"
+        android:textColor="#FFF"
+        />
+
+</RelativeLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

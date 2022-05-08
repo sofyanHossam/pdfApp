@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PdfViewActivity">
+    <RelativeLayout
+        android:id="@+id/bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/colorPrimary"
+        android:background="@drawable/shape">
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_margin="15dp"
+            android:src="@drawable/ic_back" />
+        <Button
+            android:id="@+id/fav"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="8dp"
+            android:background="#FFF"
+            android:layout_marginBottom="4dp"
+            android:paddingTop="2dp"
+           android:drawableTop="@drawable/ic_baseline_non_star_24"
+            />
+
+        <TextView
+            android:id="@+id/addText"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="اضافة الي المفضلة"
+    android:layout_below="@+id/fav"
+    android:layout_alignParentEnd="true"
+    android:layout_marginRight="12dp"
+    android:textColor="#FFF"
+    />
+
+
+        <TextView
+            android:id="@+id/bookName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="app book"
+            android:textSize="20dp"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:textColor="#FFF"/>
+    </RelativeLayout>
+
+    <com.github.barteksc.pdfviewer.PDFView
+        android:id="@+id/pdfViewer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/bar"
+        />
+    <ProgressBar
+        android:id="@+id/pb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        />
+
+
+</RelativeLayout>
