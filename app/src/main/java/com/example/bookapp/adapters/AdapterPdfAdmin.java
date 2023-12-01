@@ -1,4 +1,4 @@
-package com.example.bookapp;
+package com.example.bookapp.adapters;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -9,7 +9,6 @@ import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
@@ -19,11 +18,13 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.bookapp.databinding.ActivityPdfEditBinding;
+import com.example.bookapp.activities.PdfViewActivity;
+import com.example.bookapp.activities.pdfEditActivity;
 import com.example.bookapp.databinding.RowPdfAdminBinding;
+import com.example.bookapp.filters.FilterPdf;
+import com.example.bookapp.models.ModelPdf;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -38,11 +39,11 @@ import java.util.Calendar;
 
 public class AdapterPdfAdmin extends RecyclerView.Adapter<AdapterPdfAdmin.holderPdfAdmin> implements Filterable {
 
-    private Context context;
+    private final Context context;
     public ArrayList<ModelPdf> pdfArrayList,filterList;
     private RowPdfAdminBinding binding;
     private FilterPdf filterPdf;
-    private ProgressDialog progressDialog;
+    private final ProgressDialog progressDialog;
 
     public AdapterPdfAdmin(Context context, ArrayList<ModelPdf> pdfArrayList) {
         this.context = context;
@@ -65,15 +66,15 @@ public class AdapterPdfAdmin extends RecyclerView.Adapter<AdapterPdfAdmin.holder
     @Override
     public void onBindViewHolder(@NonNull holderPdfAdmin holder, int position) {
 
-        ModelPdf modelPdf=pdfArrayList.get(position);
-        String title =modelPdf.name;
-        String category =modelPdf.category;
-        String description =modelPdf.description;
-        String timestamp =modelPdf.timestamp;
+        ModelPdf modelPdf = pdfArrayList.get(position);
+        String title = modelPdf.getName();
+        String category = modelPdf.getCategory();
+        String description = modelPdf.getDescription();
+        String timestamp = modelPdf.getTimestamp();
 
-        Calendar calendar=Calendar.getInstance();
+        Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(Long.parseLong(timestamp));
-        String date = DateFormat.format("dd/MM/yyyy",calendar).toString();
+        String date = DateFormat.format("dd/MM/yyyy", calendar).toString();
 
         holder.title.setText(title);
         holder.desc.setText(description);
@@ -86,7 +87,7 @@ public class AdapterPdfAdmin extends RecyclerView.Adapter<AdapterPdfAdmin.holder
                 String bookUrl =modelPdf.getUrl();
                 String bookTitle =modelPdf.getName();
 
-                Intent intent =new Intent(context,PdfViewActivity.class);
+                Intent intent = new Intent(context, PdfViewActivity.class);
                 intent.putExtra("bookId",bookId);
                 context.startActivity(intent);
             }

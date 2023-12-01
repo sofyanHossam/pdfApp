@@ -1,12 +1,15 @@
-package com.example.bookapp;
+package com.example.bookapp.filters;
 
 import android.widget.Filter;
+
+import com.example.bookapp.adapters.AdapterPdfAdmin;
+import com.example.bookapp.models.ModelPdf;
 
 import java.util.ArrayList;
 
 public class FilterPdf extends Filter {
-    private ArrayList<ModelPdf> modelPdfArrayList;
-    private AdapterPdfAdmin adapterPdfAdmin;
+    private final ArrayList<ModelPdf> modelPdfArrayList;
+    private final AdapterPdfAdmin adapterPdfAdmin;
 
     public FilterPdf(ArrayList<ModelPdf> modelPdfArrayList, AdapterPdfAdmin adapterPdfAdmin) {
         this.modelPdfArrayList = modelPdfArrayList;
@@ -15,8 +18,8 @@ public class FilterPdf extends Filter {
 
     @Override
     protected FilterResults performFiltering(CharSequence constraint) {
-        FilterResults results=new FilterResults();
-        if (constraint!=null&&constraint.length()>0)
+        FilterResults results = new FilterResults();
+        if (constraint != null && constraint.length() > 0)
         {
             constraint=constraint.toString().toUpperCase();
             ArrayList<ModelPdf> filteredModels=new ArrayList<>();

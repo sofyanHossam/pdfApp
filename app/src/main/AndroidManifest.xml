@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.bookapp">
-     <uses-permission android:name="android.permission.INTERNET"
-  />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
 
     <application
         android:allowBackup="true"
@@ -12,43 +14,45 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".EditActivity"
+            android:name=".activities.EditActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ProfileActivity"
+            android:name=".activities.ProfileActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".PdfViewActivity"
+            android:name=".activities.PdfViewActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".pdfEditActivity"
+            android:name=".activities.pdfEditActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".pdfListAdminActivity"
+            android:name=".activities.pdfListAdminActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".AddPdfActivity"
+            android:name=".activities.AddPdfActivity"
+            android:theme="@style/AppTheme2" />
+        <activity
+            android:name=".activities.CategoryActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".CategoryActivity"
+            android:name=".activities.DashoardAdminActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".DashoardAdminActivity"
+            android:name=".activities.DashboardUserActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".DashboardUserActivity"
+            android:name=".activities.LoginActivity"
+
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".activities.RegisterActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".RegisterActivity"
+            android:name=".activities.MainActivity"
+
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".MainActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".SplashActivity"
+            android:name=".activities.SplashActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

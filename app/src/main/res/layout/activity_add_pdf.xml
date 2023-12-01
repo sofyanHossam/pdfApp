@@ -1,36 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddPdfActivity">
+    tools:context=".activities.AddPdfActivity">
+
     <RelativeLayout
         android:id="@+id/bar"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:layout_height="@dimen/_250sdp"
 
         android:background="@drawable/shape">
-        <ImageView
-            android:id="@+id/back"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_margin="15dp"
-            android:src="@drawable/ic_back" />
-        <ImageView
-            android:id="@+id/attech"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_alignParentEnd="true"
-            android:src="@drawable/ic_baseline_attachment_24"
-            android:layout_margin="15dp"/>
 
         <ImageView
-            android:layout_width="200dp"
+            android:id="@+id/back"
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:layout_margin="@dimen/_15sdp"
+            android:src="@drawable/ic_back" />
+
+        <ImageView
+            android:id="@+id/attech"
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/ic_baseline_attachment_24"
+            android:layout_margin="@dimen/_15sdp" />
+
+        <ImageView
+            android:layout_width="@dimen/_200sdp"
             android:layout_height="wrap_content"
             android:src="@drawable/logo"
-            android:textSize="50dp"
+            android:textSize="@dimen/_50sdp"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
             android:textColor="#FFF"/>
@@ -40,27 +41,39 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/bar"
-        android:layout_margin="12dp"
+        android:layout_margin="@dimen/_12sdp"
         android:orientation="vertical"
 
         >
+
         <EditText
             android:id="@+id/title"
             android:textColorHint="@color/colorPrimary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
-            android:layout_margin="8dp"
-            android:layout_marginTop="12dp"
-            android:hint="الاسم "/>
+            android:layout_margin="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:hint=" المادة " />
+
         <EditText
             android:id="@+id/descProduct"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
+            android:layout_margin="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:hint=" الاسم"
+            android:textColorHint="@color/colorPrimary" />
+
+        <EditText
+            android:id="@+id/price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_8sdp"
             android:textColorHint="@color/colorPrimary"
-            android:layout_marginTop="12dp"
-            android:hint=" الوصف ( اختياري )"/>
+            android:layout_marginTop="@dimen/_12sdp"
+            android:hint=" السعر"
+            android:inputType="number" />
 
         <TextView
             android:id="@+id/category"
@@ -68,12 +81,12 @@
             android:layout_width="match_parent"
             android:drawableRight="@drawable/ic_baseline_keyboard_arrow_down_24"
             android:drawableLeft="@drawable/ic_baseline_menu_book_24"
-            android:layout_height="25dp"
+            android:layout_height="@dimen/_25sdp"
             android:inputType="textPersonName"
             android:textColor="@color/colorPrimary"
-            android:layout_margin="8dp"
-            android:layout_marginTop="12dp"
-            android:text="ا القسم "/>
+            android:layout_margin="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:text=" القسم " />
 
 
 
@@ -85,11 +98,11 @@
         android:text="اضافة"
         android:background="@color/colorPrimary"
         android:textColor="#fff"
-        android:textSize="20dp"
+        android:layout_marginTop="@dimen/_25sdp"
         android:textStyle="bold"
-        android:padding="5dp"
+        android:padding="@dimen/_5sdp"
         android:layout_below="@+id/ll"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="25dp"/>
+        android:textSize="@dimen/_20sdp" />
 
 </RelativeLayout>

@@ -1,32 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
     android:background="#000"
-    >
+    tools:context=".activities.MainActivity">
+
     <ImageView
         android:id="@+id/iv"
-        android:layout_width="200dp"
-        android:layout_height="250dp"
+        android:layout_width="@dimen/_200sdp"
+        android:layout_height="@dimen/_250sdp"
         android:src="@drawable/logo"
-        android:layout_marginTop="50dp"
-        android:layout_centerHorizontal="true"
-        />
+        android:layout_marginTop="@dimen/_50sdp"
+        android:layout_centerHorizontal="true" />
+
     <TextView
         android:id="@+id/tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Book App"
-        android:textSize="40dp"
-        android:layout_marginTop="-50dp"
+        android:layout_marginTop="@dimen/_minus50sdp"
+        android:textSize="@dimen/_40sdp"
         android:textStyle="italic"
         android:textColor="#FFF"
         android:layout_below="@+id/iv"
-        android:layout_centerInParent="true"
-        />
+        android:layout_centerInParent="true" />
 
 
     <Button
@@ -34,15 +32,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tv"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="@dimen/_120sdp"
         android:text="تسجيل الدخول "
         android:background="@drawable/shape_button01"
-        android:textSize="25dp"
+        android:layout_marginBottom="@dimen/_15sdp"
         android:textColor="#FFF"
         android:layout_centerInParent="true"
-        android:paddingLeft="60dp"
-        android:paddingRight="60dp"
-        android:layout_marginBottom="15dp"
+        android:paddingLeft="@dimen/_60sdp"
+        android:paddingRight="@dimen/_60sdp"
+        android:textSize="@dimen/_25sdp"
 
         />
 
@@ -50,25 +48,15 @@
         android:id="@+id/sin_up_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:paddingLeft="50dp"
-        android:paddingRight="50dp"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:paddingLeft="@dimen/_50sdp"
+        android:paddingRight="@dimen/_50sdp"
         android:layout_centerInParent="true"
         android:background="@drawable/shape_button01"
         android:layout_below="@+id/login_btn"
         android:text="انشاء حساب جديد"
-        android:textSize="25dp"
+        android:textSize="@dimen/_25sdp"
         android:textColor="#FFF" />
 
-    <TextView
-        android:id="@+id/gust"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="التسجيل ك ضيف"
-        android:textSize="20dp"
-        android:textColor="#FFF"
-        android:layout_below="@+id/sin_up_btn"
-        android:layout_centerInParent="true"
-        />
 
 </RelativeLayout>

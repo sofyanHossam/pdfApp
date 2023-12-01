@@ -3,15 +3,14 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardElevation="8dp"
-    app:contentPadding="8dp"
-    android:layout_margin="8dp"
-    app:cardCornerRadius="8dp"
-    >
+    android:layout_margin="@dimen/_8sdp"
+    app:cardCornerRadius="@dimen/_8sdp"
+    app:cardElevation="@dimen/_8sdp"
+    app:contentPadding="@dimen/_8sdp">
+
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
+        android:layout_height="wrap_content">
 
 
         <LinearLayout
@@ -26,9 +25,9 @@
                 android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="5dp"
+                android:padding="@dimen/_5sdp"
                 android:text="الاسم"
-                android:textSize="20dp"
+                android:textSize="@dimen/_20sdp"
                 android:textStyle="bold"
                 android:textColor="#000"/>
 
@@ -37,20 +36,20 @@
                 android:maxLines="4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="5dp"
+                android:padding="@dimen/_5sdp"
                 android:text="وصف"
                 android:textColor="#000" />
 
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="5dp"
+                android:padding="@dimen/_5sdp"
                 >
                 <TextView
                     android:id="@+id/date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="5dp"
+                    android:padding="@dimen/_5sdp"
                     android:layout_alignParentEnd="true"
                     android:text="dd/mm/yy"
                     android:textColor="#000"/>
@@ -59,14 +58,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
-                    android:padding="5dp"
+                    android:padding="@dimen/_5sdp"
                     android:text="15 MB "
                     android:textColor="#000"/>
                 <TextView
                     android:id="@+id/category"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="5dp"
+                    android:padding="@dimen/_5sdp"
                     android:text="IS"
                     android:textColor="#000"/>
 

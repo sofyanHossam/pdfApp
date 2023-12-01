@@ -1,24 +1,22 @@
-package com.example.bookapp;
+package com.example.bookapp.activities;
+
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
+import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.ProgressDialog;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.net.Uri;
-import android.nfc.Tag;
-import android.os.Bundle;
-import android.text.TextUtils;
-import android.util.Log;
-import android.util.Patterns;
-import android.view.View;
-import android.widget.Toast;
-
+import com.example.bookapp.R;
 import com.example.bookapp.databinding.ActivityAddPdfBinding;
-import com.example.bookapp.databinding.ActivityDashboardUserBinding;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -34,10 +32,6 @@ import com.google.firebase.storage.UploadTask;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-
-import io.reactivex.CompletableObserver;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.schedulers.Schedulers;
 
 public class AddPdfActivity extends AppCompatActivity {
     private ActivityAddPdfBinding binding;
@@ -85,29 +79,30 @@ loadCategory();
         });
 
     }
-   private String name , desc;
 
-    private void validateData () {
-        Log.d(TAG,"validate");
+    private String name, desc, price;
+
+    private void validateData() {
+        Log.d(TAG, "validate");
         name = binding.title.getText().toString().trim();
-        desc=binding.descProduct.getText().toString().trim();
-
-
+        desc = binding.descProduct.getText().toString().trim();
+        price = binding.price.getText().toString().trim();
 
         if (TextUtils.isEmpty(name)) {
-            Toast.makeText(this, " ادخل الاسم...", Toast.LENGTH_SHORT).show();
-        }
-
-       else if (pdf_uri==null){
+            Toast.makeText(this, " ادخل اسم المادة...", Toast.LENGTH_SHORT).show();
+        } else if (pdf_uri == null) {
             Toast.makeText(this, "لم يتم اختيار ملف...", Toast.LENGTH_SHORT).show();
-        }
-       else  if (TextUtils.isEmpty(selectedCategoryTitle)) {
+        } else if (TextUtils.isEmpty(desc)) {
+            Toast.makeText(this, "ادخل اسم الملف...", Toast.LENGTH_SHORT).show();
+        } else if (TextUtils.isEmpty(price)) {
+            Toast.makeText(this, "ادخل سعر الملف...", Toast.LENGTH_SHORT).show();
+        } else if (TextUtils.isEmpty(selectedCategoryTitle)) {
             Toast.makeText(this, " اختر القسم...", Toast.LENGTH_SHORT).show();
-        }
-        else {
+        } else {
             add();
         }
     }
+
 
     private void add() {
         Log.d(TAG,"upload");
@@ -146,8 +141,9 @@ String timestamp=""+ System.currentTimeMillis();
         hashMap.put("categoryId" , selectedCategoryId);
         hashMap.put("category" , selectedCategoryTitle);
         hashMap.put("uid" , uid);
-        hashMap.put("name" , name);
-        hashMap.put("description" , desc);
+        hashMap.put("name", name);
+        hashMap.put("price", price);
+        hashMap.put("description", desc);
         hashMap.put("timestamp" , timestamp);
         hashMap.put("id" , timestamp);
         hashMap.put("url" , ""+uploadpdfuri);

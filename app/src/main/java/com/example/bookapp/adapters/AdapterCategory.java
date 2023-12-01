@@ -1,4 +1,4 @@
-package com.example.bookapp;
+package com.example.bookapp.adapters;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -16,7 +16,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.bookapp.activities.pdfListAdminActivity;
 import com.example.bookapp.databinding.RowCategoryBinding;
+import com.example.bookapp.filters.FilterCategory;
+import com.example.bookapp.models.ModelCategory;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -26,7 +29,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 
 public class AdapterCategory extends RecyclerView.Adapter<AdapterCategory.MyHolder> implements Filterable {
-    private Context context;
+    private final Context context;
     private RowCategoryBinding binding;
     private FilterCategory filterCategory;
     public AdapterCategory(Context context, ArrayList<ModelCategory> categoriesArray) {

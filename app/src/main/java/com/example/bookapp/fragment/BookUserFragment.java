@@ -1,17 +1,18 @@
-package com.example.bookapp;
+package com.example.bookapp.fragment;
 
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+
+import com.example.bookapp.adapters.AdapterPdfUser;
 import com.example.bookapp.databinding.FragmentBookUserBinding;
+import com.example.bookapp.models.ModelPdf;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;

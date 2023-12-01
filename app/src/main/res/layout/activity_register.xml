@@ -1,92 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#000"
-    tools:context=".RegisterActivity">
-<!--    <RelativeLayout-->
-<!--        android:id="@+id/bar"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="80dp"-->
-<!--        android:padding="20dp"-->
-<!--        android:background="@drawable/shape">-->
-        <ImageView
-            android:id="@+id/back"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_margin="12dp"
-            android:src="@drawable/ic_back" />
+    tools:context=".activities.RegisterActivity">
 
-
-
-<!--    </RelativeLayout>-->
-<!--    <LinearLayout-->
-<!--        android:id="@+id/ll"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_below="@+id/bar"-->
-<!--        android:orientation="vertical"-->
-<!--        >-->
-
-
-<!--        <EditText-->
-<!--            android:id="@+id/L_nameEt"-->
-<!--            android:layout_below="@+id/bar"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:inputType="textPersonName"-->
-<!--            android:layout_margin="8dp"-->
-<!--            android:drawableLeft="@drawable/ic_baseline_person_24"-->
-<!--            android:layout_marginTop="30dp"-->
-<!--            android:hint="  ادخل الاسم بالكامل"/>-->
-
-<!--        <EditText-->
-<!--            android:id="@+id/L_emailEt"-->
-<!--            android:layout_below="@+id/bar"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:drawableLeft="@drawable/ic_baseline_email_24"-->
-<!--            android:inputType="textEmailAddress"-->
-<!--            android:layout_margin="8dp"-->
-<!--            android:layout_marginTop="30dp"-->
-<!--            android:hint="  ادخل عنوان البريد الالكتروني"/>-->
-
-
-
-<!--        <EditText-->
-<!--            android:id="@+id/L_passwordEt"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_below="@+id/L_emailEt"-->
-<!--            android:drawableLeft="@drawable/ic_baseline_vpn_key_24"-->
-<!--            android:layout_centerVertical="true"-->
-<!--            android:layout_margin="8dp"-->
-<!--            android:hint="ادخل كلمة السر  "-->
-<!--            android:inputType="textPassword" />-->
-
-
-
-
-
-
+    <ImageView
+        android:id="@+id/back"
+        android:layout_width="@dimen/_30sdp"
+        android:layout_height="@dimen/_30sdp"
+        android:layout_margin="@dimen/_12sdp"
+        android:src="@drawable/ic_back" />
 
     <ImageView
         android:id="@+id/iv"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="@dimen/_100sdp"
+        android:layout_height="@dimen/_100sdp"
         android:src="@drawable/logo"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
-        />
+        android:layout_marginTop="@dimen/_50sdp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="انشاء حساب جديد"
-        android:textSize="20dp"
+        android:textSize="@dimen/_20sdp"
         android:layout_below="@+id/iv"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
@@ -97,42 +36,42 @@
         android:id="@id/lin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="30dp"
+        android:layout_marginHorizontal="@dimen/_30sdp"
         android:layout_below="@+id/iv"
         android:orientation="vertical"
-        android:padding="15dp"
-        android:layout_marginTop="80dp"
-        >
+        android:layout_marginTop="@dimen/_40sdp"
+        android:padding="@dimen/_15sdp">
 
 
-                <EditText
-                    android:id="@+id/L_nameEt"
-                    android:layout_below="@+id/bar"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:inputType="textPersonName"
-                    android:background="@drawable/shape00"
-                    android:layout_margin="8dp"
-                    android:padding="8dp"
-                    android:textColorHint="@color/colorPrimary"
-                    android:drawableLeft="@drawable/ic_baseline_person_24"
-                    android:layout_marginTop="30dp"
-                    android:hint="  ادخل الاسم بالكامل"/>
+        <EditText
+            android:id="@+id/L_nameEt"
+            android:layout_below="@+id/bar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:inputType="textPersonName"
+            android:background="@drawable/shape00"
+            android:layout_margin="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_30sdp"
+            android:textColorHint="@color/colorPrimary"
+            android:drawableLeft="@drawable/ic_baseline_person_24"
+            android:padding="@dimen/_8sdp"
+            android:hint="  ادخل الاسم بالكامل" />
+
         <EditText
             android:id="@+id/L_emailEt"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="@dimen/_40sdp"
             android:background="@drawable/shape00"
             android:layout_centerHorizontal="true"
-            android:padding="8dp"
-            android:layout_marginHorizontal="12dp"
+            android:layout_margin="@dimen/_8sdp"
+            android:layout_marginHorizontal="@dimen/_12sdp"
             android:layout_centerVertical="true"
 
             android:textColorHint="@color/colorPrimary"
             android:drawableLeft="@drawable/ic_baseline_email_24"
             android:inputType="textEmailAddress"
-            android:layout_margin="8dp"
-            android:hint="  ادخل البريد الالكتروني "/>
+            android:padding="@dimen/_8sdp"
+            android:hint="  ادخل البريد الالكتروني " />
 
         <!--  password   -->
 
@@ -140,15 +79,15 @@
         <EditText
             android:id="@+id/L_passwordEt"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:padding="8dp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_margin="@dimen/_8sdp"
             android:background="@drawable/shape00"
-            android:layout_marginHorizontal="12dp"
+            android:layout_marginHorizontal="@dimen/_12sdp"
 
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:gravity="right"
-            android:layout_margin="8dp"
+            android:padding="@dimen/_8sdp"
             android:drawableLeft="@drawable/ic_baseline_vpn_key_24"
             android:inputType="textPassword"
             android:layout_below="@+id/L_emailEt"
@@ -158,15 +97,15 @@
                 <EditText
                     android:id="@+id/c_passwordEt"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="@dimen/_40sdp"
                     android:layout_below="@+id/L_emailEt"
                     android:gravity="right"
                     android:background="@drawable/shape00"
-                    android:padding="8dp"
+                    android:layout_margin="@dimen/_8sdp"
                     android:textColorHint="@color/colorPrimary"
                     android:drawableLeft="@drawable/ic_baseline_vpn_key_24"
                     android:layout_centerVertical="true"
-                    android:layout_margin="8dp"
+                    android:padding="@dimen/_8sdp"
                     android:hint="اعادة كلمة السر "
                     android:inputType="textPassword" />
 
@@ -175,14 +114,12 @@
 
         <Button
             android:id="@+id/registerBtn"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="تسجيل"
             android:background="@color/colorPrimary"
             android:textColor="#FFF"
-            android:layout_marginBottom="18dp"
-            android:layout_marginTop="18sp"
-            android:layout_marginHorizontal="125dp"
+            android:layout_margin="@dimen/_8sdp"
             android:layout_below="@+id/L_passwordEt"
             />
     </LinearLayout>
@@ -194,7 +131,7 @@
         android:textAlignment="center"
         android:gravity="center_horizontal"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="@dimen/_20sdp"
         android:textColor="#FFF"
         />
 

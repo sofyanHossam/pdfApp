@@ -1,7 +1,4 @@
-package com.example.bookapp;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
+package com.example.bookapp.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,7 +6,13 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.bookapp.R;
+import com.example.bookapp.adapters.AdapterCategory;
 import com.example.bookapp.databinding.ActivityDashoardAdminBinding;
+import com.example.bookapp.models.ModelCategory;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -36,7 +39,7 @@ public class DashoardAdminActivity extends AppCompatActivity {
 binding.add.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View v) {
-        startActivity(new Intent(DashoardAdminActivity.this,AddPdfActivity.class));
+        startActivity(new Intent(DashoardAdminActivity.this, AddPdfActivity.class));
     }
 });
 binding.profile.setOnClickListener(new View.OnClickListener() {

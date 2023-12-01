@@ -1,4 +1,4 @@
-package com.example.bookapp;
+package com.example.bookapp.models;
 
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
@@ -17,6 +17,7 @@ public class ModelPdf {
     String    url;
     String   category;
     boolean isFavorite;
+
     public ModelPdf() {
     }
 

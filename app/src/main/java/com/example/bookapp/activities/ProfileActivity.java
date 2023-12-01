@@ -1,20 +1,24 @@
-package com.example.bookapp;
+package com.example.bookapp.activities;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.View;
-
+import com.example.bookapp.R;
+import com.example.bookapp.adapters.AdapterFav;
 import com.example.bookapp.databinding.ActivityProfileBinding;
+import com.example.bookapp.models.ModelPdf;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,16 +45,38 @@ public class ProfileActivity extends AppCompatActivity {
         });
 
         auth=FirebaseAuth.getInstance();
-      //  pdfDB=PdfDB.getInstance(ProfileActivity.this);
+        //  pdfDB=PdfDB.getInstance(ProfileActivity.this);
         loadMyInfo();
         loadFavBook();
 
         binding.edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(ProfileActivity.this,EditActivity.class));
+                startActivity(new Intent(ProfileActivity.this, EditActivity.class));
             }
         });
+        binding.searchProduct.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                try {
+                    adapterFav.getFilter().filter(s);
+                } catch (Exception e) {
+
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
     }
 
     private void loadFavBook() {
@@ -99,25 +125,28 @@ public class ProfileActivity extends AppCompatActivity {
                             String email =""+snapshot.child("email").getValue();
                             String timestamp =""+snapshot.child("timestamp").getValue();
                             String uid =""+snapshot.child("uid").getValue();
-                            String ProfileImg =""+snapshot.child("Profile Img").getValue();
+                        // String ProfileImg =""+snapshot.child("Profile Img").getValue();
                             String accType =""+snapshot.child("accountType").getValue();
-                            String password =""+snapshot.child("password").getValue();
+                        String password = "" + snapshot.child("password").getValue();
+                        String score = "" + snapshot.child("score").getValue();
                         binding.email.setText(email);
                         binding.UNameTv.setText(name);
+                        binding.score.setText(score);
 //
 //                        Glide.with(ProfileActivity.this)
 //                                .load(ProfileImg)
 //                                .placeholder(R.drawable.ic_baseline_person_24)
 //                                .into(binding.profileImage);
 
-                        try {
-                            Picasso.get().load(ProfileImg).placeholder(R.drawable.ic_baseline_person_24).into(binding.profileImage);
-                        }catch (Exception e)
-                        {
-                            binding.profileImage.setImageResource(R.drawable.ic_baseline_person_24);
-                        }
+                        //for pic not now
+//                        try {
+//                            Picasso.get().load(ProfileImg).placeholder(R.drawable.ic_baseline_person_24).into(binding.profileImage);
+//                        }catch (Exception e)
+//                        {
+//                            binding.profileImage.setImageResource(R.drawable.ic_baseline_person_24);
+//                        }
 
-                        }
+                    }
 
 
                     @Override

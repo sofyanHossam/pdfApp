@@ -1,4 +1,10 @@
-package com.example.bookapp;
+package com.example.bookapp.activities;
+
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -8,15 +14,10 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
-import android.content.Context;
-import android.content.Intent;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.Toast;
-
+import com.example.bookapp.R;
 import com.example.bookapp.databinding.ActivityDashboardUserBinding;
-import com.example.bookapp.databinding.ActivityDashoardAdminBinding;
+import com.example.bookapp.fragment.BookUserFragment;
+import com.example.bookapp.models.ModelCategory;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -117,15 +118,15 @@ public class DashboardUserActivity extends AppCompatActivity {
         viewpager.setAdapter(viewPagerAdapter);
     }
 
-    public class ViewPagerAdapter extends FragmentPagerAdapter{
+    public class ViewPagerAdapter extends FragmentPagerAdapter {
 
-        private ArrayList<BookUserFragment>fragmentArrayList=new ArrayList<>();
-        private ArrayList<String> fragmentTitleList =new ArrayList<>();
-        private Context context;
+        private final ArrayList<BookUserFragment> fragmentArrayList = new ArrayList<>();
+        private final ArrayList<String> fragmentTitleList = new ArrayList<>();
+        private final Context context;
 
-        public ViewPagerAdapter(@NonNull FragmentManager fm, int behavior,Context context) {
+        public ViewPagerAdapter(@NonNull FragmentManager fm, int behavior, Context context) {
             super(fm, behavior);
-            this.context=context;
+            this.context = context;
         }
 
         @NonNull

@@ -1,13 +1,11 @@
-package com.example.bookapp;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
+package com.example.bookapp.activities;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.text.InputType;
 import android.text.TextUtils;
 import android.util.Patterns;
@@ -16,6 +14,10 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.bookapp.R;
 import com.example.bookapp.databinding.ActivityLoginBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -35,12 +37,15 @@ public class LoginActivity extends AppCompatActivity {
     private ActivityLoginBinding binding;
     private FirebaseAuth auth;
     private ProgressDialog progressDialog;
+    private String thisDeviceId;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        binding=ActivityLoginBinding.inflate(getLayoutInflater());
-        auth=FirebaseAuth.getInstance();
+        thisDeviceId = Settings.Secure.getString(this.getContentResolver(), Settings.Secure.ANDROID_ID);
+        binding = ActivityLoginBinding.inflate(getLayoutInflater());
+        auth = FirebaseAuth.getInstance();
         progressDialog = new ProgressDialog(this);
         progressDialog.setTitle("انتظر قليلا");
         progressDialog.setCanceledOnTouchOutside(false);
@@ -101,6 +106,7 @@ public class LoginActivity extends AppCompatActivity {
         });
 
     }
+
     private void showRecoverPasswordDialog() {
         AlertDialog.Builder builder=new AlertDialog.Builder(this);
         builder.setTitle("تغيير كلمة المرور");
@@ -165,17 +171,22 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         progressDialog.dismiss();
-                        String userType=""+snapshot.child("accountType").getValue();
+                        String userType = "" + snapshot.child("accountType").getValue();
+                        String deviceId = "" + snapshot.child("myDeviceId").getValue();
 
-                        if(userType.equals("user")){
-                            startActivity(new Intent(LoginActivity.this,DashboardUserActivity.class));
+                        if (userType.equals("user") && (thisDeviceId.equals(deviceId))) {
+                            startActivity(new Intent(LoginActivity.this, DashboardUserActivity.class));
                             finish();
-                        }
-                        else{
-                            startActivity(new Intent(LoginActivity.this,DashoardAdminActivity.class));
+                        } else if (userType.equals("user") && !thisDeviceId.equals(deviceId)) {
+                            Toast.makeText(LoginActivity.this, "يمكنك التسجيل بجهاز واحد فقط", Toast.LENGTH_SHORT).show();
+                            auth.signOut();
+                            finish();
+                        } else {
+                            startActivity(new Intent(LoginActivity.this, DashoardAdminActivity.class));
                             finish();
 
                         }
+
                     }
 
                     @Override

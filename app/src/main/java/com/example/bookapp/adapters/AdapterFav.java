@@ -1,4 +1,4 @@
-package com.example.bookapp;
+package com.example.bookapp.adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -6,6 +6,8 @@ import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -13,7 +15,10 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.bookapp.activities.PdfViewActivity;
 import com.example.bookapp.databinding.RowFavoriteBookBinding;
+import com.example.bookapp.filters.FilterPdfFav;
+import com.example.bookapp.models.ModelPdf;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -26,23 +31,20 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageMetadata;
 import com.google.firebase.storage.StorageReference;
 
+import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
 
-import io.reactivex.CompletableObserver;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.schedulers.Schedulers;
-
-public class AdapterFav extends RecyclerView.Adapter<AdapterFav.holderFav> {
-    private Context context;
-    private List<ModelPdf> modelPdfArrayList;
+public class AdapterFav extends RecyclerView.Adapter<AdapterFav.holderFav> implements Filterable {
+    private final Context context;
+    public ArrayList<ModelPdf> modelPdfArrayList, filterList;
+    private FilterPdfFav filterPdfFav;
     private RowFavoriteBookBinding binding;
 
-
-
-    public AdapterFav(Context context, List<ModelPdf> modelPdfArrayList) {
+    public AdapterFav(Context context, ArrayList<ModelPdf> modelPdfArrayList) {
         this.context = context;
         this.modelPdfArrayList = modelPdfArrayList;
+        this.filterList = modelPdfArrayList;
+
     }
 
     @NonNull
@@ -176,22 +178,29 @@ public class AdapterFav extends RecyclerView.Adapter<AdapterFav.holderFav> {
     }
 
 
-
-
     @Override
     public int getItemCount() {
         return modelPdfArrayList.size();
     }
 
-    class holderFav extends RecyclerView.ViewHolder{
-        TextView title,desc,size,date,cate;
+    @Override
+    public Filter getFilter() {
+        if (filterPdfFav == null) {
+            filterPdfFav = new FilterPdfFav(modelPdfArrayList, this);
+        }
+        return filterPdfFav;
+    }
+
+    class holderFav extends RecyclerView.ViewHolder {
+        TextView title, desc, size, date, cate;
         ImageView imageView;
+
         public holderFav(@NonNull View itemView) {
             super(itemView);
-            title=binding.title;
-            desc=binding.description;
-            date=binding.date;
-            size=binding.size;
+            title = binding.title;
+            desc = binding.description;
+            date = binding.date;
+            size = binding.size;
             cate=binding.category;
             imageView=binding.fav;
 

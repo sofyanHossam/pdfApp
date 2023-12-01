@@ -1,18 +1,19 @@
-package com.example.bookapp;
-
-import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
+package com.example.bookapp.activities;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Settings;
+import android.provider.Settings.Secure;
 import android.text.TextUtils;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.bookapp.databinding.ActivityMainBinding;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.bookapp.R;
 import com.example.bookapp.databinding.ActivityRegisterBinding;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -24,17 +25,24 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.HashMap;
 
 public class RegisterActivity extends AppCompatActivity {
-   private FirebaseAuth auth;
+    private FirebaseAuth auth;
     private ProgressDialog progressDialog;
     private ActivityRegisterBinding binding;
+
+
+    String myDeviceId;
+    private String Name, email, pass, Cpass, userName;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+        myDeviceId = Settings.Secure.getString(RegisterActivity.this.getContentResolver(),
+                Secure.ANDROID_ID);
         binding = ActivityRegisterBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        auth=FirebaseAuth.getInstance();
-        progressDialog=new ProgressDialog(this);
+        auth = FirebaseAuth.getInstance();
+        progressDialog = new ProgressDialog(this);
 
         progressDialog.setTitle("انتظر قليلا");
         progressDialog.setCanceledOnTouchOutside(false);
@@ -57,12 +65,12 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
     }
-   private String Name, email, pass, Cpass;
 
     private void validateData()
     {
         Name = binding.LNameEt.getText().toString().trim();
         email = binding.LEmailEt.getText().toString().trim();
+        userName = binding.LEmailEt.getText().toString().trim().split("@")[0];
         pass = binding.LPasswordEt.getText().toString().trim();
         Cpass = binding.cPasswordEt.getText().toString().trim();
        
@@ -118,36 +126,35 @@ progressDialog.show();
 
     private void saveFirebaseData() {
         progressDialog.setMessage("جاري حفظ البيانات ....");
-        String timeStamp =""+System.currentTimeMillis();
-        HashMap<String,Object> hashMap=new HashMap<>();
-        hashMap.put("email" , email);
-        hashMap.put("password" , pass);
-        hashMap.put("uid" , auth.getUid());
-        hashMap.put("name" , Name);
-        hashMap.put("timestamp" , timeStamp);
-        hashMap.put("accountType" , "user");
-        hashMap.put("PDF URI" , "");
+        String timeStamp = "" + System.currentTimeMillis();
+        HashMap<String, Object> hashMap = new HashMap<>();
+        hashMap.put("email", email);
+        hashMap.put("password", pass);
+        hashMap.put("uid", auth.getUid());
+        hashMap.put("name", Name);
+        hashMap.put("timestamp", timeStamp);
+        hashMap.put("accountType", "user");
+        hashMap.put("PDF URI", "");
+        hashMap.put("score", "" + 0);
+        hashMap.put("myDeviceId", myDeviceId);
 
-        FirebaseDatabase database =FirebaseDatabase.getInstance();
-
-        DatabaseReference reference =database.getReference("Users");
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference reference = database.getReference("Users");
         reference.child(auth.getUid()).setValue(hashMap)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
                         progressDialog.dismiss();
                         Toast.makeText(RegisterActivity.this, " تم انشاء حساب جديد", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(RegisterActivity.this , DashboardUserActivity.class));
+                        startActivity(new Intent(RegisterActivity.this, DashboardUserActivity.class));
                         finish();
                     }
                 }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                progressDialog.dismiss();
-                Toast.makeText(RegisterActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        progressDialog.dismiss();
+                        Toast.makeText(RegisterActivity.this, "" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
-
-
 }

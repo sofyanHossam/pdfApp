@@ -1,21 +1,9 @@
-package com.example.bookapp;
+package com.example.bookapp.activities;
 
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-
-import android.Manifest;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.ContentValues;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -26,7 +14,14 @@ import android.view.View;
 import android.widget.PopupMenu;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.bookapp.R;
 import com.example.bookapp.databinding.ActivityEditBinding;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -48,56 +43,36 @@ public class EditActivity extends AppCompatActivity {
 
     private FirebaseAuth auth;
     private ActivityEditBinding binding;
-    private Uri image_uri=null;
-    private static final int CAMERA_REQUEST_CODE=100;
-    private static final int STORAGE_REQUEST_CODE=200;
-    private static final int IMAGE_REQUEST_PICK_CAMERA_CODE=300;
-    private static final int IMAGE_REQUEST_PICK_GALLERY_CODE=400;
+    private Uri image_uri = null;
+    private static final int CAMERA_REQUEST_CODE = 100;
+    private static final int STORAGE_REQUEST_CODE = 200;
+    private static final int IMAGE_REQUEST_PICK_CAMERA_CODE = 300;
+    private static final int IMAGE_REQUEST_PICK_GALLERY_CODE = 400;
 
-    ProgressDialog pd ;
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit);
+    ProgressDialog pd;
+    private final ActivityResultLauncher<Intent> camAct = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
 
-        pd= new ProgressDialog(this);
-        pd.setTitle("انتظر...");
-        pd.setCanceledOnTouchOutside(false);
-
-
-        binding=ActivityEditBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
-
-        auth=FirebaseAuth.getInstance();
-
-        binding.back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
+                    if (result.getResultCode() == Activity.RESULT_OK) {
+                        Intent data = result.getData();
+                        binding.profileImage.setImageURI(image_uri);
+                    } else {
+                        Toast.makeText(EditActivity.this, "تم الالغاء", Toast.LENGTH_SHORT).show();
+                    }
+                }
             }
-        });
-        loadMyInfo();
-        binding.profileImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showImagePickDialog();
-            }
-        });
-        binding.done.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                validateData();
-            }
-        });
-    }
+    );
 
-private String name="";
+    private String name = "";
+
     private void validateData() {
-        name=binding.UNameTv.getText().toString().trim();
-        if (TextUtils.isEmpty(name)){
+        name = binding.UNameTv.getText().toString().trim();
+        if (TextUtils.isEmpty(name)) {
             Toast.makeText(this, "ادخل الاسم ", Toast.LENGTH_SHORT).show();
-        }
-        else {
+        } else {
             updateProfile();
         }
     }
@@ -219,40 +194,61 @@ private String name="";
         camAct.launch(intent);
     }
 
-    private ActivityResultLauncher<Intent> camAct =registerForActivityResult(
-            new ActivityResultContracts.StartActivityForResult(),
-            new ActivityResultCallback<ActivityResult>() {
-                @Override
-                public void onActivityResult(ActivityResult result) {
-
-                    if (result.getResultCode()==Activity.RESULT_OK){
-                        Intent data =result.getData();
-                        binding.profileImage.setImageURI(image_uri);
-                    }else {
-                        Toast.makeText(EditActivity.this, "تم الالغاء", Toast.LENGTH_SHORT).show();
-                    }
-                }
-            }
-    );
-
-    private ActivityResultLauncher<Intent> galAct =registerForActivityResult(
+    private final ActivityResultLauncher<Intent> galAct = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             new ActivityResultCallback<ActivityResult>() {
                 @Override
                 public void onActivityResult(ActivityResult result) {
 
 
-                    if (result.getResultCode()==Activity.RESULT_OK){
-                        Intent data =result.getData();
-                        image_uri =data.getData();
+                    if (result.getResultCode() == Activity.RESULT_OK) {
+                        Intent data = result.getData();
+                        image_uri = data.getData();
                         binding.profileImage.setImageURI(image_uri);
-                    }else {
+                    } else {
                         Toast.makeText(EditActivity.this, "تم الالغاء", Toast.LENGTH_SHORT).show();
                     }
 
                 }
             }
     );
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_edit);
+
+        pd = new ProgressDialog(this);
+        pd.setTitle("انتظر...");
+        pd.setCanceledOnTouchOutside(false);
+
+
+        binding = ActivityEditBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
+        auth = FirebaseAuth.getInstance();
+
+        binding.back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+        loadMyInfo();
+        //for pic ,,, not now
+//        binding.profileImage.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                showImagePickDialog();
+//            }
+//        });
+        binding.done.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                validateData();
+            }
+        });
+    }
 
     private void loadMyInfo() {
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users");
@@ -270,11 +266,6 @@ private String name="";
                         String password =""+snapshot.child("password").getValue();
 
                         binding.UNameTv.setText(name);
-//
-//                                Glide.with(EditActivity.this)
-//                                .load(ProfileImg)
-//                                .placeholder(R.drawable.ic_baseline_person_24)
-//                                .into(binding.profileImage);
 
                         try {
                             Picasso.get().load(ProfileImg).placeholder(R.drawable.ic_baseline_person_24).into(binding.profileImage);

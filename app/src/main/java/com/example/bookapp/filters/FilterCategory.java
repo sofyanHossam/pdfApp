@@ -1,12 +1,15 @@
-package com.example.bookapp;
+package com.example.bookapp.filters;
 
 import android.widget.Filter;
+
+import com.example.bookapp.adapters.AdapterCategory;
+import com.example.bookapp.models.ModelCategory;
 
 import java.util.ArrayList;
 
 public class FilterCategory extends Filter {
-    private ArrayList<ModelCategory> categoryArrayList;
-    private AdapterCategory adapterCategory;
+    private final ArrayList<ModelCategory> categoryArrayList;
+    private final AdapterCategory adapterCategory;
 
     public FilterCategory(ArrayList<ModelCategory> categoryArrayList, AdapterCategory adapterCategory) {
         this.categoryArrayList = categoryArrayList;
@@ -15,8 +18,8 @@ public class FilterCategory extends Filter {
 
     @Override
     protected FilterResults performFiltering(CharSequence constraint) {
-        FilterResults results=new FilterResults();
-        if (constraint!=null&&constraint.length()>0)
+        FilterResults results = new FilterResults();
+        if (constraint != null && constraint.length() > 0)
         {
             constraint=constraint.toString().toUpperCase();
             ArrayList<ModelCategory> filteredModels=new ArrayList<>();

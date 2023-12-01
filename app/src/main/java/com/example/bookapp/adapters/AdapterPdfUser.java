@@ -1,6 +1,5 @@
-package com.example.bookapp;
+package com.example.bookapp.adapters;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.text.format.DateFormat;
@@ -16,8 +15,10 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.bookapp.databinding.RowPdfAdminBinding;
+import com.example.bookapp.activities.PdfViewActivity;
 import com.example.bookapp.databinding.RowpdfuserBinding;
+import com.example.bookapp.filters.FilterPdfUser;
+import com.example.bookapp.models.ModelPdf;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
@@ -33,7 +34,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 public class AdapterPdfUser extends RecyclerView.Adapter<AdapterPdfUser.holderPdfUser> implements Filterable {
-    private Context context;
+    private final Context context;
     public ArrayList<ModelPdf> pdfArrayList,filterList;
     private FilterPdfUser filterPdf;
     private RowpdfuserBinding binding;
@@ -53,21 +54,21 @@ public class AdapterPdfUser extends RecyclerView.Adapter<AdapterPdfUser.holderPd
 
     @Override
     public void onBindViewHolder(@NonNull holderPdfUser holder, int position) {
-        ModelPdf modelPdf=pdfArrayList.get(position);
-        String title =modelPdf.name;
-        String category =modelPdf.category;
-        String description =modelPdf.description;
-        String timestamp =modelPdf.timestamp;
+        ModelPdf modelPdf = pdfArrayList.get(position);
+        String title = modelPdf.getName();
+        String category = modelPdf.getCategory();
+        String description = modelPdf.getDescription();
+        String timestamp = modelPdf.getTimestamp();
 
-        Calendar calendar=Calendar.getInstance();
+        Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(Long.parseLong(timestamp));
-        String date = DateFormat.format("dd/MM/yyyy",calendar).toString();
+        String date = DateFormat.format("dd/MM/yyyy", calendar).toString();
 
         holder.title.setText(title);
         holder.desc.setText(description);
         holder.date.setText(date);
-        loadSize(modelPdf,holder);
-        loadCategory(modelPdf,holder);
+        loadSize(modelPdf, holder);
+        loadCategory(modelPdf, holder);
 
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -75,7 +76,7 @@ public class AdapterPdfUser extends RecyclerView.Adapter<AdapterPdfUser.holderPd
             public void onClick(View v) {
                 String bookId=modelPdf.getId();
 
-                Intent intent =new Intent(context,PdfViewActivity.class);
+                Intent intent = new Intent(context, PdfViewActivity.class);
                 intent.putExtra("bookId",bookId);
                 context.startActivity(intent);
             }
